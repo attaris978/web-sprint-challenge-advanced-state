@@ -5,9 +5,9 @@ export function moveClockwise() {return { type: actions.MOVE_CLOCKWISE} }
 
 export function moveCounterClockwise() {return { type: actions.MOVE_COUNTERCLOCKWISE} }
 
-export function selectAnswer() { }
+export function selectAnswer(questionNumber) {return {type: actions.SET_SELECTED_ANSWER, payload: questionNumber} }
 
-export function setMessage() { }
+export function setMessage(message) {return {type: actions.SET_INFO_MESSAGE, payload: message} }
 
 export function setQuiz() { }
 

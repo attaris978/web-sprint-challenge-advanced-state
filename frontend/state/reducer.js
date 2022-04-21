@@ -20,7 +20,8 @@ function wheel(state = initialWheelState, action) {
 const initialQuizState = {
   quiz_id: '',
   question: '',
-  answers: ''
+  answers: '',
+  selectedAnswer:''
 }
 function quiz(state = initialQuizState, action) {
   switch(action.type) {
@@ -29,7 +30,9 @@ case actions.SET_QUIZ_INTO_STATE:
     return { 
       quiz_id: action.payload.quiz_id,
       question: action.payload.question,
-      answers: action.payload.answers
+      answers: action.payload.answers,
+      selectedAnswer: action.payload.selectedAnswer
+      
       
     }
 ;
@@ -40,7 +43,14 @@ case actions.SET_QUIZ_INTO_STATE:
 
 const initialSelectedAnswerState = null
 function selectedAnswer(state = initialSelectedAnswerState, action) {
+  switch(action.type) {
+    case actions.SET_SELECTED_ANSWER:
+      console.log("reducer for selected answer with payload: ", action.payload);
+      console.log(state);
+      return action.payload;
+    default:
   return state
+    }
 }
 
 const initialMessageState = ''

@@ -1,13 +1,14 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux';
-import {fetchQuiz} from '../state/action-creators';
+import {fetchQuiz, selectAnswer} from '../state/action-creators';
 
 const mapStateToProps = state => {
   console.log("In the map with ", state);
   return {
     quiz_id: state.quiz.quiz_id,
     question: state.quiz.question,
-    answers: state.quiz.answers}
+    answers: state.quiz.answers,
+    selectedAnswer: state.selectedAnswer}
 
   
 }
@@ -15,7 +16,8 @@ const mapStateToProps = state => {
 function Quiz(props) {
 
   useEffect(() => {
-    props.fetchQuiz();
+    if (!props.quiz_id) {
+    props.fetchQuiz()}
   }, []);
 
   return (
@@ -27,17 +29,17 @@ function Quiz(props) {
             <h2>{props.question}</h2>
 
             <div id="quizAnswers">
-              <div className="answer selected">
+              <div className={`answer ${props.selectedAnswer === 0 ? 'selected' : ''}`}>
                 {props.answers[0].text}
-                <button>
-                  SELECTED
+                <button onClick={() => props.selectAnswer(0)}>
+                  {props.selectedAnswer === 0 ? 'SELECTED' : 'Select'}
                 </button>
               </div>
 
-              <div className="answer">
+              <div className={`answer ${props.selectedAnswer === 1 ? 'selected' : ''}`}>
                 {props.answers[1].text}
-                <button>
-                  Select
+                <button onClick={() => props.selectAnswer(1)}>
+                {props.selectedAnswer === 1 ? 'SELECTED' : 'Select'}
                 </button>
               </div>
             </div>
@@ -50,4 +52,4 @@ function Quiz(props) {
   )
 }
 
-export default connect(mapStateToProps, {fetchQuiz})(Quiz);
+export default connect(mapStateToProps, {fetchQuiz, selectAnswer})(Quiz);
