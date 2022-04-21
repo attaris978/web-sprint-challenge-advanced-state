@@ -12,7 +12,7 @@ function Wheel(props) {
   return (
     <div id="wrapper">
       <div id="wheel">
-        <div className={`cog ${props.wheel === 0 ? "active" : ""}`} style={{ "--i": 0 }}>B</div>
+        <div className={`cog ${props.wheel === 0 ? "active" : ""}`} style={{ "--i": 0 }}>{`${props.wheel === 0 ? "B" : ""}`}</div>
         <div className={`cog ${props.wheel === 1 ? "active" : ""}`} style={{ "--i": 1 }}></div>
         <div className={`cog ${props.wheel === 2 ? "active" : ""}`} style={{ "--i": 2 }}></div>
         <div className={`cog ${props.wheel === 3 ? "active" : ""}`} style={{ "--i": 3 }}></div>
