@@ -44,7 +44,7 @@ function Quiz(props) {
               </div>
             </div>
 
-            <button id="submitAnswerBtn" onClick={console.log(props)}>Submit answer</button>
+            <button id="submitAnswerBtn" disabled={props.selectedAnswer === 0 || props.selectedAnswer ? false : true} onClick={console.log(props)}>Submit answer</button>
           </>
         ) : `Loading next quiz ${props.quiz_id}`
       }
