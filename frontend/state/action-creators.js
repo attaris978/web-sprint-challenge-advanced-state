@@ -1,7 +1,9 @@
 // ❗ You don't need to add extra action creators to achieve MVP
-export function moveClockwise() { }
+import * as actions from './action-types';
 
-export function moveCounterClockwise() { }
+export function moveClockwise() {return { type: actions.MOVE_CLOCKWISE} }
+
+export function moveCounterClockwise() {return { type: actions.MOVE_COUNTERCLOCKWISE} }
 
 export function selectAnswer() { }
 
@@ -11,7 +13,7 @@ export function setQuiz() { }
 
 export function inputChange() { }
 
-export function resetForm() { }
+export function resetForm() { return { type: actions.RESET_FORM}}
 
 // ❗ Async action creators
 export function fetchQuiz() {

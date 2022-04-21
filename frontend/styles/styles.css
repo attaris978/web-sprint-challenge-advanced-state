@@ -177,7 +177,12 @@ footer {
 }
 
 #wheel .cog.active {
-  background-color: #ff4b00;
+  background-image:url("../images/bee.png");
+  background-position:center;
+  background-size:contain;
+  background-repeat:no-repeat;
+  color: rgba(0,0,0,.01);
+
 }
 
 #quiz {
