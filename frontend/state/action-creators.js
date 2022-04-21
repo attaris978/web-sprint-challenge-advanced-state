@@ -18,6 +18,15 @@ export function resetForm() { return { type: actions.RESET_FORM}}
 // ❗ Async action creators
 export function fetchQuiz() {
   return function (dispatch) {
+    console.log("dispatch by thunk");
+    
+    dispatch({type:actions.SET_QUIZ_INTO_STATE, payload: {quiz_id:null, question:null, answers:null}});
+    fetch('http://localhost:9000/api/quiz/next')
+.then(response => response.json())
+.then(quiz => {
+  console.log(quiz);
+  dispatch({type:actions.SET_QUIZ_INTO_STATE, payload: quiz})})
+.catch(err => console.error(err));
     // First, dispatch an action to reset the quiz state (so the "Loading next quiz..." message can display)
     // On successful GET:
     // - Dispatch an action to send the obtained quiz to its state
