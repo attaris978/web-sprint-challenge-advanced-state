@@ -72,12 +72,24 @@ const initialFormState = {
 function form(state = initialFormState, action) {
   switch(action.type) {
 case actions.RESET_FORM:
+  console.log("reset form");
   return {
     newQuestion: '',
     newTrueAnswer: '',
     newFalseAnswer: ''
-  };
+  }
+
+  case actions.INPUT_CHANGE:
+    
+    console.log("Input change: ", action.payload);
+    
+    return action.payload; 
+      
+      
+    
+
   default:
+    console.log("default");
   return state;
   }
 

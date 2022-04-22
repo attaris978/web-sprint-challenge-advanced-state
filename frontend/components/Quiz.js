@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux';
-import {fetchQuiz, selectAnswer, postAnswer} from '../state/action-creators';
+import {fetchQuiz, selectAnswer, postAnswer, setMessage} from '../state/action-creators';
 
 const mapStateToProps = state => {
   console.log("In the map with ", state);
@@ -53,4 +53,4 @@ function Quiz(props) {
   )
 }
 
-export default connect(mapStateToProps, {fetchQuiz, selectAnswer, postAnswer})(Quiz);
+export default connect(mapStateToProps, {fetchQuiz, selectAnswer, postAnswer, setMessage})(Quiz);
