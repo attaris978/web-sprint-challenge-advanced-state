@@ -55,9 +55,12 @@ function selectedAnswer(state = initialSelectedAnswerState, action) {
 
 const initialMessageState = ''
 function infoMessage(state = initialMessageState, action) {
-  return {
-    ...state,
-    message: action.payload
+  switch(action.type) {
+    case actions.SET_INFO_MESSAGE:
+      console.log(state, action.payload);
+      return action.payload.message;
+      default:
+        return state;
   }
 }
 

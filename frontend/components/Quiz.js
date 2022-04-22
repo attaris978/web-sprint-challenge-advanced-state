@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux';
-import {fetchQuiz, selectAnswer} from '../state/action-creators';
+import {fetchQuiz, selectAnswer, postAnswer} from '../state/action-creators';
 
 const mapStateToProps = state => {
   console.log("In the map with ", state);
@@ -44,7 +44,8 @@ function Quiz(props) {
               </div>
             </div>
 
-            <button id="submitAnswerBtn" disabled={props.selectedAnswer === 0 || props.selectedAnswer ? false : true} onClick={console.log(props)}>Submit answer</button>
+            <button id="submitAnswerBtn" disabled={props.selectedAnswer === 0 || props.selectedAnswer ? false : true}
+            onClick={() => props.postAnswer(props.quiz_id, props.answers[props.selectedAnswer].answer_id)}>Submit answer</button>
           </>
         ) : `Loading next quiz ${props.quiz_id}`
       }
@@ -52,4 +53,4 @@ function Quiz(props) {
   )
 }
 
-export default connect(mapStateToProps, {fetchQuiz, selectAnswer})(Quiz);
+export default connect(mapStateToProps, {fetchQuiz, selectAnswer, postAnswer})(Quiz);

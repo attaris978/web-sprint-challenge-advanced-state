@@ -32,8 +32,22 @@ export function fetchQuiz() {
     // - Dispatch an action to send the obtained quiz to its state
   }
 }
-export function postAnswer() {
+export function postAnswer(quiz_id, answer_id) {
   return function (dispatch) {
+    fetch('http://localhost:9000/api/quiz/answer', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        quiz_id,
+        answer_id
+    })
+})
+.then(response => response.json())
+.then(message => dispatch({type: actions.SET_INFO_MESSAGE, payload: message}))
+.catch(err => console.error(err));    
     // On successful POST:
     // - Dispatch an action to reset the selected answer state
     // - Dispatch an action to set the server message to state
