@@ -91,8 +91,27 @@ export function postAnswer(quiz_id, answer_id) {
     // - Dispatch the fetching of the next quiz
   };
 }
-export function postQuiz() {
+export function postQuiz(question_text, true_answer_text, false_answer_text) {
   return function (dispatch) {
+    fetch("http://localhost:9000/api/quiz/new", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        question_text,
+        true_answer_text,
+        false_answer_text
+      }),
+    })
+      .then((response) => response.json())
+      .then((message) => {
+        dispatch({ type: actions.SET_INFO_MESSAGE, payload: {message: `Congrats: "${message.question}" is a great question!` }});
+        dispatch({type: actions.RESET_FORM});
+      
+      })
+    
     // On successful POST:
     // - Dispatch the correct message to the the appropriate state
     // - Dispatch the resetting of the form

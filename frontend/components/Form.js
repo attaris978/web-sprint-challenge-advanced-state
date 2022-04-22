@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { inputChange } from '../state/action-creators'
+import { inputChange, postQuiz } from '../state/action-creators'
 
 export function Form(props) {
 
 
-  const onSubmit = evt => {
-
+  const onSubmit = e => {
+e.preventDefault();
+props.postQuiz(props.newQuestion, props.newTrueAnswer, props.newFalseAnswer);
   }
 
   return (
@@ -18,7 +19,7 @@ export function Form(props) {
        onChange={ e => props.inputChange({...props, newTrueAnswer: e.target.value}) } id="newTrueAnswer" placeholder="Enter true answer" />
       <input value={props.newFalseAnswer} maxLength={50}
        onChange={ e => props.inputChange({...props, newFalseAnswer: e.target.value}) } id="newFalseAnswer" placeholder="Enter false answer" />
-      <button id="submitNewQuizBtn">Submit new quiz</button>
+      <button disabled={ props.newQuestion.trim().length > 0 && props.newFalseAnswer.trim().length > 0 && props.newTrueAnswer.trim().length > 0 ? false : true} id="submitNewQuizBtn">Submit new quiz</button>
     </form>
   )
 }
@@ -31,4 +32,4 @@ const mapStateToProps = state => {
   newFalseAnswer: state.form.newFalseAnswer
 }
 }
-export default connect(mapStateToProps, {inputChange})(Form)
+export default connect(mapStateToProps, {inputChange, postQuiz})(Form)
